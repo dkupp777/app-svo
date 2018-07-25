@@ -1,0 +1,96 @@
+- name: Ensure group ovs exists
+  group:
+    name: ovs
+    state: present
+
+- name: Ensure ovs user exists
+  user:
+    name: ovs
+    comment: OVS User
+    state: present
+
+- name: Create OVS tomcat container
+  command: cp -a "/opt/{{ tomcat_ver }}/." /vc/ovs/
+    
+- name: Ensure OVS log exists
+  file:
+    path: /vc/logs/ovs
+    state: directory
+    owner: ovs
+    group: ovs
+    mode: 0644
+    recurse: yes
+
+- name: Push setenv.sh config file
+  template:
+    src: setenv.sh.j2
+    dest: /vc/ovs/bin/setenv.sh
+    mode: 0755
+
+- name: Install startup script
+  template:
+    src: ovs-systemd.j2
+    dest:  /usr/lib/systemd/system/ovs.service
+    owner: root
+    group: root
+    mode: 644
+
+- name: Enable ovs on start
+  systemd:
+    name: ovs
+    enabled: yes
+    masked: no
+
+- name: Deploy OVS war 
+  copy:
+    src: "/media/packages/ovs/OVS-1.0.0.war"
+    dest: "/vc/ovs/webapps/"
+    owner: ovs
+    group: ovs
+    mode: 0644
+
+- name: Ensure OVS path exists
+  file:
+    path: /vc/ovs/webapps/OVS/
+    state: directory
+    mode: 0755
+   
+- name: Unarchive OVS war
+  unarchive:
+    src: /vc/ovs/webapps/OVS-1.0.0.war
+    dest: /vc/ovs/webapps/OVS/
+    remote_src: yes
+
+- name: Import table properties
+  template:
+    src: table.properties.j2
+    dest: /vc/ovs/webapps/OVS/WEB-INF/classes/table.properties
+
+- name: Import logging.properties
+  template:
+    src: logging.properties.j2
+    dest: /vc/ovs/conf/logging.properties
+
+- name: Import database properties
+  template:
+    src: db.properties.j2
+    dest: /vc/ovs/webapps/OVS/WEB-INF/classes/db.properties
+
+- name: Import ovs properties
+  template:
+    src: ovs.properties.j2
+    dest: /vc/ovs/webapps/OVS/WEB-INF/classes/ovs.properties
+
+- name: Import context.xml file
+  template:
+    src: context.xml.j2
+    dest: /vc/ovs/webapps/OVS/META-INF/context.xml
+
+- name: Ensure OVS ownership  
+  file:
+    path: /vc/ovs
+    owner: ovs
+    group: ovs
+    recurse: yes
+  
+

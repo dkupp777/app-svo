@@ -1,0 +1,6 @@
+---
+- hosts: ovs
+  remote_user: svc_devops
+  become: yes
+  roles:
+    - ovs

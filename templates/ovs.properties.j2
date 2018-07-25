@@ -1,0 +1,35 @@
+# This is the version of the OVS to run:
+#	2 - enhanced mode
+#	anything else (including blank) - run in legacy mode
+Version=2
+
+# Number of hours to retry an SSN verification attempt before assigning
+# a status of TIMEOUT to the request record.
+SSNRetryTimeout=72
+# If this item is yes or true, then the INVALID response code returned
+# by the OVS will become OVSINVALID (code OI), and the INVALID response
+# code returned by the SSA will remain the same.
+fixAmbiguousInvalid=
+# If this is set to yes or true, then the OVS will update the EDRS
+# death record status when an OVS request is processed.
+updateEDRSStatus=yes
+
+# Number of records to fetch at each request query.
+OVSClient.FetchSize=1
+# Number of minutes to wait after a system-type error before resubmitting
+# the request.
+OVSClient.FailedRequestRetryInterval=5
+# Number of times to retry.
+OVSClient.RetryCount=1
+OVSClient.State=AZ
+OVSClient.OVSUser=9E1143
+OVSClient.OVSPassword=
+OVSClient.ThreadSleepInterval=5000
+OVSClient.ThreadCount=1
+OVSClient.OVSServerHost=sy51.sspf.ssa.gov
+OVSClient.OVSServerPort=1429
+
+# This is the path that specifies where requests will be sent.
+# The current SSA path is /CICS/CWBA/GW02C00?IEDR
+# The SSA simulator path is /OVS/SSATest?xml=
+OVSClient.OVSServerPath=/OVS/SSATest?xml=

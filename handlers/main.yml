@@ -1,0 +1,15 @@
+---
+- name: Start OVS
+  service:
+    name: ovs
+    state: started
+
+- name: Stop OVS
+  service:
+    name: ovs
+    state: stopped
+
+- name: Restart OVS
+  service:
+    name: ovs
+    state: restarted

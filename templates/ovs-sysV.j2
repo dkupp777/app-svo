@@ -1,0 +1,35 @@
+#{{ ansible_managed }}
+#!/bin/bash
+# description: Startup script for OVS Tomcat
+# processname: ovs
+
+start_tomcat=/vc/ovs/current/bin/startup.sh
+stop_tomcat=/vc/ovs/current/bin/shutdown.sh
+
+start() {
+echo -n Starting tomcat:
+su ovs -c ${start_tomcat}
+echo done.
+}
+stop() {
+echo -n Shutting down tomcat:
+${stop_tomcat}
+echo done.
+}
+
+# Handler options
+case $1 in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    sleep 10
+    start
+    ;;
+  *)
+  echo Usage: $0 {start|stop|restart}
+esac

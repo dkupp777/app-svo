@@ -1,0 +1,10 @@
+/vc/logs/ovs/catalina.out {
+  copytruncate
+  daily
+  rotate 366
+  compress
+  missingok
+  postrotate
+  /root/adminapps/archiveVitalchekLogs.sh /vc/logs/ovs/
+  endscript
+}

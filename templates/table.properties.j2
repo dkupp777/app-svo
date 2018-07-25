@@ -1,0 +1,117 @@
+# Information for users (leave userTable blank to disable user support).
+userTable:
+# For compound primary keys, list the columns separated by commas
+userPK:
+userFname:
+userMname:
+userLname:
+# userWhole is for when the entire name is stored in one column
+userWhole:
+
+# Information for user facilities (leave facilTable blank to disable facility support).
+facilTable:
+# For compound primary keys, list the columns separated by commas
+facilPK:
+facilName:
+
+# Information for the EDRS deaths table/view.
+deathTable:     PERSON_SSN_VERIFICATION
+# Foreign key column to the OVS status codes table
+deathStatusFK:  OVS_STATUS_CODE_ID
+# For compound primary keys, list the columns separated by commas
+deathPK:                        PERSON_SSN_VERIFICATION_ID
+deathFname:                     FIRST_NAME
+deathMname:                     MIDDLE_NAME
+deathLname:                     LAST_NAME
+deathSSN:                       SSN
+# Use the following fields if the SSN is divided into three fields
+deathSSN1:
+deathSSN2:
+deathSSN3:
+# Date of Birth stored in date field
+deathDOBdate:           DOB
+# Date of Birth stored as string
+deathDOBstring:
+# This is the format of the DoB if stored as a string (not needed otherwise)
+# This should conform to the Java SimpleDateFormat patterns specified at:
+# http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html
+deathDOBformat:
+# Date of Birth stored in three fields
+deathDOBmonth:
+deathDOBday:
+deathDOByear:
+# Gender stored in single field (fill out Gender Codes section)
+deathGender:            GENDER
+# Gender stored as flags (fill out Gender Flags section)
+deathGenderM:           M
+deathGenderF:           F
+deathGenderU:           U
+
+# Gender Codes (leave blank for NULL)
+genderCodeMale:         M
+genderCodeFemale:       F
+genderCodeUnknown:      U
+
+# The value specified here indicates that the flag is set
+# (leave blank for NULL)
+genderFlagSet:          1
+
+# Table information for SSA down dates.
+downDatesTable:         ovs_down_dates
+downDatesPK:            odd_seq
+downDatesStatus:        odd_status
+downDatesDate:          odd_date
+downDatesTime:          odd_time
+
+# Table information for SSA down times.
+downTimesTable:         ovs_down_times
+downTimesPK:            odt_seq
+downTimesStatus:        odt_status
+downTimesDay:           odt_day
+downTimesTime:          odt_time
+
+# Table information for the verification requests status codes.
+statusCodesTable:       ovs_status_codes
+statusCodesPK:          osc_seq
+statusCodesCode:        osc_code
+statusCodesDesc:        osc_desc
+statusCodesRetry:       osc_retry_flag
+
+# Table information for the table where verification requests are stored.
+requestsTable:          ovs_requests
+requestsPK:                     ovr_seq
+requestsDeathFK:        ovr_cert_seq
+requestsStatusFK:       ovr_osc_seq
+requestsUserFK:         ovr_usr_seq
+requestsFacilFK:        ovr_facil_seq
+requestsAttemptNum:     ovr_attempt_no
+requestsUpdateDate:     ovr_date_updated
+requestsCreateDate:     ovr_date_created
+requestsSSN:            ovr_ssn
+requestsFirstName:      ovr_fname
+requestsMiddleName:     ovr_mname
+requestsLastName:       ovr_lname
+requestsGender:         ovr_gender
+requestsDOB:            ovr_dob
+
+# This is for the table used when doing local-side testing.
+testTable:                      ovs_ssa_data
+testSSN:                        osd_ssn
+testFirstName:          osd_first_name
+testMiddleName:         osd_middle_name
+testLastName:           osd_last_name
+testGender:                     osd_gender
+testDOB:                        osd_dob
+
+
+# The following tables and columns are used for the built-in reports.
+
+# This is for determining whether a death certificate has been filed or not.
+recordFileTable:
+recordFileDeathFK:
+recordFileDate:
+recordFileString:
+recordFileFormat:
+recordFileMonth:
+recordFileDay:
+recordFileYear:

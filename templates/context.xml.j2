@@ -1,0 +1,25 @@
+<Context reloadable="true" crossContext="true">
+<Resource
+    auth="Container"
+    name= {{ ovsdbname }}
+    type="javax.sql.DataSource"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    password="ovsTestuser1@"
+    maxIdle="10"
+    maxWait="5000"
+    username="app_ovs2_q3"
+    url="jdbc:sqlserver://bwdwtsql05\dev;DatabaseName=OVS2"
+    maxActive="20"/>
+  <Resource
+    auth="Container"
+    name="jdbc/DaveAzTrans"
+    type="javax.sql.DataSource"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    password="ovsTestuser1@"
+    maxIdle="10"
+    maxWait="5000"
+    username="app_ovs2_q3"
+    url="jdbc:sqlserver://bwdwtsql05\dev;DatabaseName=DaveAzTrans"
+    maxActive="20"/>
+</Context>
+

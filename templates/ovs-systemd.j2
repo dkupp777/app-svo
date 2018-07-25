@@ -1,0 +1,12 @@
+[Unit]
+Description=Service for OVS Dave Integration
+After=network.target
+
+[Service]
+ExecStart=/vc/ovs/bin/startup.sh
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

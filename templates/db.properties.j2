@@ -1,0 +1,41 @@
+#Path to datasources (often something like java:comp/env/jdbc/ or java:jdbc/)
+JDBCPath:java:comp/env/jdbc/
+# EDRS datasource name
+EDRSdsName: DaveAzTrans
+# User datasource name (leave blank to use EDRS datasource)
+UserDSName:
+# Facility datasource name (leave blank to use EDRS datasource)
+FacilityDSName:
+# OVS datasource name (leave blank to use EDRS datasource)
+OVSdsName: OVS
+
+# If the OVS should generate primary keys for the tables that it inserts into,
+# set this to yes or true.  Otherwise, leave blank.
+genPrimaryKeys:         yes
+
+# Format used to display dates.  This should conform to the Java
+# SimpleDateFormat patterns specified at:
+# http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html
+dateDisplayFormat:      yyyy-MM-dd
+
+# If you have compound primary keys, they will be stored in the OVS tables
+# as a concatenated value, separated by the delimiter specified here.  This
+# needs to be a character (or sequence of characters) that will NOT occur in
+# any of the columns comprising the primary key.
+safeDelimiter:          |
+
+# Some installations of OVS used a four-parameter version of ovs_get_requests.
+# Set this property to yes or true to indicate that this is the version used
+# by your installation.
+fourParameterGetRequests:
+# This determines whether ovs_get_requests is a procedure or function.
+# Set to yes or true if it is a procedure.
+getRequestsIsProcedure:
+# As above, but for ovs_set_request.
+setRequestIsProcedure:
+# Specify a package name if ovs_get_requests and ovs_set_requests are part
+# of a package.  You *must* include the trailing . after the prefix (if you
+# choose to have a prefix at all).
+
+D
+packagePrefix:
